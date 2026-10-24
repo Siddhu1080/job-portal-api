@@ -46,6 +46,37 @@ Never commit `.env`. The collections (`users`, `jobs`, `applications`) are creat
 
 The server exits with a clear message if a variable is missing, placeholders are still present, or Atlas cannot be reached.
 
+
+
+## Authentication and Authorization
+
+The API uses JSON Web Tokens (JWT) to authenticate users.
+
+### Registration and login
+
+- Register using `POST /api/auth/register`.
+- Log in using `POST /api/auth/login`.
+- Use the returned JWT as a Bearer token for protected endpoints.
+- Retrieve the current user's profile using `GET /api/auth/me`.
+
+### Roles and permissions
+
+| Role | Permissions |
+|---|---|
+| Public | Register, log in, and browse jobs |
+| Candidate | Apply for jobs, view personal applications, and withdraw eligible applications |
+| Employer | Create and manage owned jobs, view applications for owned jobs, and update application statuses |
+
+Protected requests must include:
+
+```http
+Authorization: Bearer <your_jwt_token>
+```
+
+The API checks authentication, role permissions, and resource ownership where required. Do not share real JWT tokens or store them in source control.
+
+
+
 ## Endpoints
 | Method | Endpoint | Access |
 |---|---|---|
