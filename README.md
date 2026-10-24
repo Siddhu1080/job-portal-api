@@ -134,6 +134,26 @@ Job owners can retrieve a job's application statistics and close a job to preven
 
 One Employer has many Jobs; one Job has many Applications; one Candidate has many Applications.
 
+
+## Application Management
+
+Candidates can apply for an open job with a cover letter, view their own applications, and withdraw an application while its status is `applied`.
+
+Employers can view applications for jobs they own and update application statuses according to the permitted transitions.
+
+### Application endpoints
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| POST | `/api/jobs/:id/apply` | Apply to a job |
+| GET | `/api/jobs/:id/applications` | View applications for an owned job |
+| GET | `/api/applications/my` | View the candidate's applications |
+| PATCH | `/api/applications/:id/status` | Update an application's status |
+| DELETE | `/api/applications/:id` | Withdraw an eligible application |
+
+The API prevents duplicate applications to the same job by the same candidate. Applications also enforce ownership checks so users cannot manage other users' applications without authorization.
+
+
 ## Status transitions
 ```
 applied -> shortlisted -> hired
