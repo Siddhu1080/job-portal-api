@@ -1,0 +1,7 @@
+$kind: collection
+description: |-
+  REST API for a job portal (Node.js, Express, MongoDB, JWT). Employers post jobs and manage applications; candidates search jobs, apply and track applications.
+
+  Setup: import the environment file, set baseUrl, then run Auth -> Jobs -> Applications in order against an empty database. Login requests store tokens; create/apply requests store jobId, closedJobId, deleteJobId, applicationId and application2Id.
+
+  Errors always look like {"success": false, "message": "..."}.

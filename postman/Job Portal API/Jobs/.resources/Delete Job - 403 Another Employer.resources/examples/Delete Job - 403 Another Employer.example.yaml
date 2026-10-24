@@ -1,0 +1,21 @@
+$kind: http-example
+auth:
+  type: bearer
+  credentials:
+    token: "{{employer2Token}}"
+request:
+  url: "{{baseUrl}}/api/jobs/{{deleteJobId}}"
+  method: DELETE
+response:
+  statusCode: 403
+  statusText: Forbidden
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "You can only delete your own jobs"
+      }
+order: 1000

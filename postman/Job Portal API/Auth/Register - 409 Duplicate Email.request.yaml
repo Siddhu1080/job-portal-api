@@ -1,0 +1,28 @@
+$kind: http-request
+description: |-
+  Public. Email already registered.
+
+  Access: public / no token.
+url: "{{baseUrl}}/api/auth/register"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Candidate One",
+      "email": "candidate1@example.com",
+      "password": "secret123",
+      "role": "candidate"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 409', function () { pm.response.to.have.status(409); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Register - 409 Duplicate Email.resources/examples
+order: 6000

@@ -1,0 +1,10 @@
+# Use this workspace to collaborate
+workspace:
+  id: b50dcbda-e4f8-42fd-89b7-8b6d03003d29
+
+localResources:
+  collections:
+    - ../Job Portal API
+    - ../Job Portal API-1
+  environments:
+    - ../Job Portal API - Local.environment.yaml

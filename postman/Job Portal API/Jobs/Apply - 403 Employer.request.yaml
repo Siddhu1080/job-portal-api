@@ -1,0 +1,24 @@
+$kind: http-request
+description: Employers cannot apply.
+url: "{{baseUrl}}/api/jobs/{{jobId}}/apply"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "coverLetter": "I am excited to apply for this role and believe my skills are a strong fit."
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 403', function () { pm.response.to.have.status(403); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Apply - 403 Employer.resources/examples
+order: 19000

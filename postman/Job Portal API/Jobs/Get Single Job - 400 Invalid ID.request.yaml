@@ -1,0 +1,17 @@
+$kind: http-request
+description: |-
+  Public. Malformed MongoDB ID.
+
+  Access: public / no token.
+url: "{{baseUrl}}/api/jobs/123"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 400', function () { pm.response.to.have.status(400); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Get Single Job - 400 Invalid ID.resources/examples
+order: 12000

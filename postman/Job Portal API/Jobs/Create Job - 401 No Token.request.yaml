@@ -1,0 +1,34 @@
+$kind: http-request
+description: |-
+  No token returns 401.
+
+  Access: public / no token.
+url: "{{baseUrl}}/api/jobs"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "Node.js Backend Developer",
+      "description": "Build REST APIs with Express and MongoDB.",
+      "location": "Pune",
+      "type": "full-time",
+      "salary": 45000,
+      "skills": [
+        "node",
+        "express",
+        "mongodb"
+      ]
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 401', function () { pm.response.to.have.status(401); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Create Job - 401 No Token.resources/examples
+order: 3000

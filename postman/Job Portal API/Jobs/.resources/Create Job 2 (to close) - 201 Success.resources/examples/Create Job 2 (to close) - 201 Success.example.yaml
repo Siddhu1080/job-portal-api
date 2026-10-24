@@ -1,0 +1,52 @@
+$kind: http-example
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+request:
+  url: "{{baseUrl}}/api/jobs"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "title": "Frontend Intern",
+        "description": "Help build React interfaces.",
+        "location": "Mumbai",
+        "type": "internship",
+        "salary": 15000,
+        "skills": [
+          "react"
+        ]
+      }
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "title": "Frontend Intern",
+          "description": "Help build React interfaces.",
+          "companyName": "Acme Tech",
+          "location": "Mumbai",
+          "type": "internship",
+          "salary": 15000,
+          "skills": [
+            "react"
+          ],
+          "status": "open",
+          "postedBy": "6adc629bc3f8de3310fda061",
+          "_id": "6adc629cc3f8de3310fda066",
+          "createdAt": "2026-10-24T07:47:40.329Z",
+          "updatedAt": "2026-10-24T07:47:40.329Z",
+          "__v": 0
+        }
+      }
+order: 1000

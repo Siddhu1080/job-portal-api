@@ -1,0 +1,17 @@
+$kind: http-request
+description: |-
+  No token returns 401.
+
+  Access: public / no token.
+url: "{{baseUrl}}/api/applications/my"
+method: GET
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 401', function () { pm.response.to.have.status(401); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Get My Applications - 401 No Token.resources/examples
+order: 2000

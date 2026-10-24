@@ -1,0 +1,40 @@
+$kind: http-example
+auth:
+  type: noauth
+request:
+  url: "{{baseUrl}}/api/auth/register"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "name": "Employer One",
+        "email": "employer1@example.com",
+        "password": "secret123",
+        "role": "employer",
+        "companyName": "Acme Tech"
+      }
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZGM2MjliYzNmOGRlMzMxMGZkYTA2MSIsImlhdCI6MTc5MjgyODA1OSwiZXhwIjoxNzkyOTE0NDU5fQ.Y9vNFUklwObHaxhv8oQDJH8Tw-MKR6MXi80WhU69M0U",
+        "data": {
+          "name": "Employer One",
+          "email": "employer1@example.com",
+          "role": "employer",
+          "companyName": "Acme Tech",
+          "_id": "6adc629bc3f8de3310fda061",
+          "createdAt": "2026-10-24T07:47:39.395Z",
+          "updatedAt": "2026-10-24T07:47:39.395Z"
+        }
+      }
+order: 1000

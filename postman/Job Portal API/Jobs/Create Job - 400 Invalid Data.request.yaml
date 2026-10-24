@@ -1,0 +1,29 @@
+$kind: http-request
+description: Employer only. Invalid type, negative salary, skills not an array.
+url: "{{baseUrl}}/api/jobs"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "X",
+      "description": "Y",
+      "location": "Pune",
+      "type": "weekend",
+      "salary": -5,
+      "skills": "node"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 400', function () { pm.response.to.have.status(400); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Create Job - 400 Invalid Data.resources/examples
+order: 2000

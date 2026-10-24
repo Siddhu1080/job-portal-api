@@ -1,0 +1,22 @@
+name: Job Portal API - Local
+values:
+  - key: baseUrl
+    value: 'http://localhost:3000'
+  - key: employerToken
+    value: ''
+  - key: employer2Token
+    value: ''
+  - key: candidateToken
+    value: ''
+  - key: candidate2Token
+    value: ''
+  - key: jobId
+    value: ''
+  - key: closedJobId
+    value: ''
+  - key: deleteJobId
+    value: ''
+  - key: applicationId
+    value: ''
+  - key: application2Id
+    value: ''

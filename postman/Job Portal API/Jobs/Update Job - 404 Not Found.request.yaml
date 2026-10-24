@@ -1,0 +1,24 @@
+$kind: http-request
+description: Job does not exist.
+url: "{{baseUrl}}/api/jobs/000000000000000000000000"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "salary": 50000
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 404', function () { pm.response.to.have.status(404); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Update Job - 404 Not Found.resources/examples
+order: 16000

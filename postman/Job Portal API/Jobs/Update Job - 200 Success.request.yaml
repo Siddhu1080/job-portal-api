@@ -1,0 +1,25 @@
+$kind: http-request
+description: "Job owner only. Any of: title, description, companyName, location, type, salary, skills."
+url: "{{baseUrl}}/api/jobs/{{jobId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "salary": 50000,
+      "description": "Build and scale REST APIs."
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () { pm.response.to.have.status(200); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(true); });
+    language: text/javascript
+examples: ./.resources/Update Job - 200 Success.resources/examples
+order: 14000

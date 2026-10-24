@@ -1,0 +1,35 @@
+$kind: http-request
+description: "Employer only. Body: title, description, location, type (full-time|part-time|internship|remote), salary (positive, per month), skills (array), companyName (optional, defaults to employer company). Saves {{jobId}}."
+url: "{{baseUrl}}/api/jobs"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "Node.js Backend Developer",
+      "description": "Build REST APIs with Express and MongoDB.",
+      "location": "Pune",
+      "type": "full-time",
+      "salary": 45000,
+      "skills": [
+        "node",
+        "express",
+        "mongodb"
+      ]
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201', function () { pm.response.to.have.status(201); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(true); });
+      var json = pm.response.json();
+      pm.environment.set('jobId', json.data._id);
+    language: text/javascript
+examples: ./.resources/Create Job - 201 Success.resources/examples
+order: 1000

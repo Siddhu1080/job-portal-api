@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/api/jobs/{{jobId}}/apply"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "coverLetter": "I am interested in this position and believe my skills match the requirements."
+    }
+order: 4000

@@ -1,0 +1,26 @@
+$kind: http-request
+description: "Candidate only. Body: coverLetter. One application per job; job must be open. Saves {{applicationId}}."
+url: "{{baseUrl}}/api/jobs/{{jobId}}/apply"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "coverLetter": "I am excited to apply for this role and believe my skills are a strong fit."
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{candidateToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201', function () { pm.response.to.have.status(201); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(true); });
+      var json = pm.response.json();
+      pm.environment.set('applicationId', json.data._id);
+    language: text/javascript
+examples: ./.resources/Apply - 201 Success.resources/examples
+order: 17000

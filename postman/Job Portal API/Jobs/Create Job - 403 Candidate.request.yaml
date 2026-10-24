@@ -1,0 +1,33 @@
+$kind: http-request
+description: A candidate cannot post jobs.
+url: "{{baseUrl}}/api/jobs"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "Node.js Backend Developer",
+      "description": "Build REST APIs with Express and MongoDB.",
+      "location": "Pune",
+      "type": "full-time",
+      "salary": 45000,
+      "skills": [
+        "node",
+        "express",
+        "mongodb"
+      ]
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{candidateToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 403', function () { pm.response.to.have.status(403); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Create Job - 403 Candidate.resources/examples
+order: 4000

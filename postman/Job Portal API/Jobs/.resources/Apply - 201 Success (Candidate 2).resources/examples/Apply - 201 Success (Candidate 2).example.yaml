@@ -1,0 +1,38 @@
+$kind: http-example
+auth:
+  type: bearer
+  credentials:
+    token: "{{candidate2Token}}"
+request:
+  url: "{{baseUrl}}/api/jobs/{{jobId}}/apply"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "coverLetter": "I am excited to apply for this role and believe my skills are a strong fit."
+      }
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "job": "6adc629cc3f8de3310fda065",
+          "candidate": "6adc629bc3f8de3310fda064",
+          "coverLetter": "I am excited to apply for this role and believe my skills are a strong fit.",
+          "status": "applied",
+          "_id": "6adc629cc3f8de3310fda069",
+          "createdAt": "2026-10-24T07:47:40.432Z",
+          "updatedAt": "2026-10-24T07:47:40.432Z",
+          "__v": 0
+        }
+      }
+order: 1000

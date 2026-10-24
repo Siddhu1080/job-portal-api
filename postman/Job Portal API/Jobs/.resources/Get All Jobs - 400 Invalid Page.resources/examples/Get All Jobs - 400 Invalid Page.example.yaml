@@ -1,0 +1,21 @@
+$kind: http-example
+auth:
+  type: noauth
+request:
+  url: "{{baseUrl}}/api/jobs?page=-1"
+  method: GET
+  queryParams:
+    page: "-1"
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "page must be a positive integer"
+      }
+order: 1000

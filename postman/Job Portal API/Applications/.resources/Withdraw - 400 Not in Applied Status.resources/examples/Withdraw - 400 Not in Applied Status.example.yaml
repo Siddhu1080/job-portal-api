@@ -1,0 +1,21 @@
+$kind: http-example
+auth:
+  type: bearer
+  credentials:
+    token: "{{candidateToken}}"
+request:
+  url: "{{baseUrl}}/api/applications/{{applicationId}}"
+  method: DELETE
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "Only applications with status \"applied\" can be withdrawn (current status: hired)"
+      }
+order: 1000

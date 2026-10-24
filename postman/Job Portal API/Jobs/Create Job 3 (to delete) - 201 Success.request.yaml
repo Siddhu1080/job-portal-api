@@ -1,0 +1,33 @@
+$kind: http-request
+description: Helper request. Saves {{deleteJobId}}, used to test cascade delete.
+url: "{{baseUrl}}/api/jobs"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "QA Engineer",
+      "description": "Test APIs using Postman.",
+      "location": "Pune",
+      "type": "part-time",
+      "salary": 30000,
+      "skills": [
+        "postman"
+      ]
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201', function () { pm.response.to.have.status(201); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(true); });
+      var json = pm.response.json();
+      pm.environment.set('deleteJobId', json.data._id);
+    language: text/javascript
+examples: ./.resources/Create Job 3 (to delete) - 201 Success.resources/examples
+order: 6000

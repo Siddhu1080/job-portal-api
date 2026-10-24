@@ -1,0 +1,16 @@
+$kind: http-request
+description: Job already deleted.
+url: "{{baseUrl}}/api/jobs/{{deleteJobId}}"
+method: DELETE
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 404', function () { pm.response.to.have.status(404); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Delete Job - 404 Not Found.resources/examples
+order: 33000

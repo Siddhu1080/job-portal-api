@@ -1,0 +1,46 @@
+$kind: http-example
+auth:
+  type: bearer
+  credentials:
+    token: "{{candidateToken}}"
+request:
+  url: "{{baseUrl}}/api/applications/my"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "count": 1,
+        "data": [
+          {
+            "_id": "6adc629cc3f8de3310fda068",
+            "job": {
+              "_id": "6adc629cc3f8de3310fda065",
+              "title": "Node.js Backend Developer",
+              "companyName": "Acme Tech",
+              "location": "Pune",
+              "type": "full-time",
+              "salary": 50000,
+              "skills": [
+                "node",
+                "express",
+                "mongodb"
+              ],
+              "status": "open"
+            },
+            "candidate": "6adc629bc3f8de3310fda063",
+            "coverLetter": "I am excited to apply for this role and believe my skills are a strong fit.",
+            "status": "applied",
+            "createdAt": "2026-10-24T07:47:40.417Z",
+            "updatedAt": "2026-10-24T07:47:40.417Z",
+            "__v": 0
+          }
+        ]
+      }
+order: 1000

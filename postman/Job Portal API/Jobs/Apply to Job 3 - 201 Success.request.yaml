@@ -1,0 +1,26 @@
+$kind: http-request
+description: Helper request so deleting Job 3 also deletes an application.
+url: "{{baseUrl}}/api/jobs/{{deleteJobId}}/apply"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "coverLetter": "I am excited to apply for this role and believe my skills are a strong fit."
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{candidate2Token}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201', function () { pm.response.to.have.status(201); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(true); });
+      var json = pm.response.json();
+      pm.environment.set('deletedAppId', json.data._id);
+    language: text/javascript
+examples: ./.resources/Apply to Job 3 - 201 Success.resources/examples
+order: 30000

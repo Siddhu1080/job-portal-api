@@ -1,0 +1,29 @@
+$kind: http-example
+auth:
+  type: bearer
+  credentials:
+    token: "{{candidateToken}}"
+request:
+  url: "{{baseUrl}}/api/jobs/{{jobId}}/apply"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "coverLetter": "I am excited to apply for this role and believe my skills are a strong fit."
+      }
+response:
+  statusCode: 409
+  statusText: Conflict
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "You have already applied to this job"
+      }
+order: 1000

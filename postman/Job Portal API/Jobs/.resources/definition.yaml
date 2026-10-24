@@ -1,0 +1,3 @@
+$kind: collection
+description: Employers create and manage jobs; anyone can browse; candidates apply. Owner-only actions return 403 for other employers.
+order: 2000

@@ -1,0 +1,14 @@
+$kind: collection
+name: Job Portal API
+description: API collection for the Job Portal backend. Register and log in to obtain JWT tokens before testing protected endpoints.
+variables:
+  baseUrl: http://localhost:3000
+  token: ""
+  jobId: ""
+  applicationId: ""
+auth:
+  - id: cf4879dd-210f-4203-a90d-1a334ffe25d5
+    type: bearer
+    name: bearer auth
+    credentials:
+      token: "{{token}}"

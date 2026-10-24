@@ -1,0 +1,24 @@
+$kind: http-request
+description: "Job owner only. Body: status. Allowed: applied->shortlisted|rejected, shortlisted->hired|rejected."
+url: "{{baseUrl}}/api/applications/{{applicationId}}/status"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "status": "shortlisted"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () { pm.response.to.have.status(200); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(true); });
+    language: text/javascript
+examples: ./.resources/Update Status - 200 Shortlisted.resources/examples
+order: 6000

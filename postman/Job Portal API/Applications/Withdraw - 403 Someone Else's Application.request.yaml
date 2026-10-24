@@ -1,0 +1,16 @@
+$kind: http-request
+description: A candidate cannot withdraw another candidate's application.
+url: "{{baseUrl}}/api/applications/{{application2Id}}"
+method: DELETE
+auth:
+  type: bearer
+  credentials:
+    token: "{{candidateToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 403', function () { pm.response.to.have.status(403); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Withdraw - 403 Someone Else's Application.resources/examples
+order: 9000

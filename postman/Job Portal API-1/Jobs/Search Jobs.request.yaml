@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{baseUrl}}/api/jobs?location=Pune&type=full-time&page=1&limit=5"
+method: GET
+queryParams:
+  location: Pune
+  type: full-time
+  page: "1"
+  limit: "5"
+order: 3000

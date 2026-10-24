@@ -1,0 +1,16 @@
+$kind: http-request
+description: "Candidate only. Returns own applications with job details. Optional query: status."
+url: "{{baseUrl}}/api/applications/my"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{candidateToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () { pm.response.to.have.status(200); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(true); });
+    language: text/javascript
+examples: ./.resources/Get My Applications - 200 With Data.resources/examples
+order: 1000

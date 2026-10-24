@@ -1,0 +1,3 @@
+$kind: collection
+description: Register, log in and fetch your profile. Login requests save JWTs into environment variables.
+order: 1000

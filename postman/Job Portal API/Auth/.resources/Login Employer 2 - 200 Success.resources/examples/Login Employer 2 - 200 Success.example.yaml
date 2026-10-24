@@ -1,0 +1,37 @@
+$kind: http-example
+auth:
+  type: noauth
+request:
+  url: "{{baseUrl}}/api/auth/login"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "email": "employer2@example.com",
+        "password": "secret123"
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZGM2MjliYzNmOGRlMzMxMGZkYTA2MiIsImlhdCI6MTc5MjgyODA2MCwiZXhwIjoxNzkyOTE0NDYwfQ.dWSAdSUF1h_rfDBGqdZr-xlB2a0lVsr3yGGCZrjUvAU",
+        "data": {
+          "_id": "6adc629bc3f8de3310fda062",
+          "name": "Employer Two",
+          "email": "employer2@example.com",
+          "role": "employer",
+          "companyName": "Beta Soft",
+          "createdAt": "2026-10-24T07:47:39.521Z",
+          "updatedAt": "2026-10-24T07:47:39.521Z"
+        }
+      }
+order: 1000

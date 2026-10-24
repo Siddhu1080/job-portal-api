@@ -1,0 +1,3 @@
+$kind: collection
+description: Candidates track and withdraw applications; employers update status (applied -> shortlisted -> hired/rejected).
+order: 3000

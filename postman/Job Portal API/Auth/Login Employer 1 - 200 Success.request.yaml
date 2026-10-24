@@ -1,0 +1,28 @@
+$kind: http-request
+description: |-
+  Public. Body: email, password. Saves the JWT to {{employerToken}}.
+
+  Access: public / no token.
+url: "{{baseUrl}}/api/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "employer1@example.com",
+      "password": "secret123"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () { pm.response.to.have.status(200); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(true); });
+      var json = pm.response.json();
+      pm.environment.set('employerToken', json.token);
+    language: text/javascript
+examples: ./.resources/Login Employer 1 - 200 Success.resources/examples
+order: 7000

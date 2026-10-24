@@ -1,0 +1,53 @@
+$kind: http-example
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+request:
+  url: "{{baseUrl}}/api/jobs/{{jobId}}/applications?status=applied"
+  method: GET
+  queryParams:
+    status: applied
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "count": 2,
+        "data": [
+          {
+            "_id": "6adc629cc3f8de3310fda069",
+            "job": "6adc629cc3f8de3310fda065",
+            "candidate": {
+              "_id": "6adc629bc3f8de3310fda064",
+              "name": "Candidate Two",
+              "email": "candidate2@example.com"
+            },
+            "coverLetter": "I am excited to apply for this role and believe my skills are a strong fit.",
+            "status": "applied",
+            "createdAt": "2026-10-24T07:47:40.432Z",
+            "updatedAt": "2026-10-24T07:47:40.432Z",
+            "__v": 0
+          },
+          {
+            "_id": "6adc629cc3f8de3310fda068",
+            "job": "6adc629cc3f8de3310fda065",
+            "candidate": {
+              "_id": "6adc629bc3f8de3310fda063",
+              "name": "Candidate One",
+              "email": "candidate1@example.com"
+            },
+            "coverLetter": "I am excited to apply for this role and believe my skills are a strong fit.",
+            "status": "applied",
+            "createdAt": "2026-10-24T07:47:40.417Z",
+            "updatedAt": "2026-10-24T07:47:40.417Z",
+            "__v": 0
+          }
+        ]
+      }
+order: 1000

@@ -1,0 +1,29 @@
+$kind: http-example
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+request:
+  url: "{{baseUrl}}/api/applications/{{applicationId}}/status"
+  method: PATCH
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "status": "hired"
+      }
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "An application cannot move from applied to hired"
+      }
+order: 1000

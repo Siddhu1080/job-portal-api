@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{baseUrl}}/api/jobs"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "Junior Python Developer",
+      "description": "Develop APIs and backend features.",
+      "companyName": "Test Technologies",
+      "location": "Pune",
+      "type": "full-time",
+      "salary": 30000,
+      "skills": ["Python", "FastAPI", "SQL"]
+    }
+order: 2000

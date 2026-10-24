@@ -1,0 +1,16 @@
+$kind: http-request
+description: Only applications with status applied can be withdrawn.
+url: "{{baseUrl}}/api/applications/{{applicationId}}"
+method: DELETE
+auth:
+  type: bearer
+  credentials:
+    token: "{{candidateToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 400', function () { pm.response.to.have.status(400); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Withdraw - 400 Not in Applied Status.resources/examples
+order: 10000

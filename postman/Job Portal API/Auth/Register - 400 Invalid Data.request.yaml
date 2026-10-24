@@ -1,0 +1,28 @@
+$kind: http-request
+description: |-
+  Public. Fails validation: invalid email, short password, missing companyName for an employer.
+
+  Access: public / no token.
+url: "{{baseUrl}}/api/auth/register"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Bad User",
+      "email": "not-an-email",
+      "password": "123",
+      "role": "employer"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 400', function () { pm.response.to.have.status(400); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Register - 400 Invalid Data.resources/examples
+order: 5000

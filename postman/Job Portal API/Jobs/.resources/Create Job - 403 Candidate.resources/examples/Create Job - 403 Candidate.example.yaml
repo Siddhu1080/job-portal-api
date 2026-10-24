@@ -1,0 +1,38 @@
+$kind: http-example
+auth:
+  type: bearer
+  credentials:
+    token: "{{candidateToken}}"
+request:
+  url: "{{baseUrl}}/api/jobs"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "title": "Node.js Backend Developer",
+        "description": "Build REST APIs with Express and MongoDB.",
+        "location": "Pune",
+        "type": "full-time",
+        "salary": 45000,
+        "skills": [
+          "node",
+          "express",
+          "mongodb"
+        ]
+      }
+response:
+  statusCode: 403
+  statusText: Forbidden
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "Access denied: only employer users can perform this action"
+      }
+order: 1000

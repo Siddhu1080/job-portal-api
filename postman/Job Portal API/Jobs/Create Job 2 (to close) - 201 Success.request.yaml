@@ -1,0 +1,33 @@
+$kind: http-request
+description: Helper request. Saves {{closedJobId}}, used to test closing and applying to a closed job.
+url: "{{baseUrl}}/api/jobs"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "title": "Frontend Intern",
+      "description": "Help build React interfaces.",
+      "location": "Mumbai",
+      "type": "internship",
+      "salary": 15000,
+      "skills": [
+        "react"
+      ]
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201', function () { pm.response.to.have.status(201); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(true); });
+      var json = pm.response.json();
+      pm.environment.set('closedJobId', json.data._id);
+    language: text/javascript
+examples: ./.resources/Create Job 2 (to close) - 201 Success.resources/examples
+order: 5000

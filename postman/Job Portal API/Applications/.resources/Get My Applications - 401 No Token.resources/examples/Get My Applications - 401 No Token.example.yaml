@@ -1,0 +1,19 @@
+$kind: http-example
+auth:
+  type: noauth
+request:
+  url: "{{baseUrl}}/api/applications/my"
+  method: GET
+response:
+  statusCode: 401
+  statusText: Unauthorized
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "Authentication required. Provide a Bearer token"
+      }
+order: 1000

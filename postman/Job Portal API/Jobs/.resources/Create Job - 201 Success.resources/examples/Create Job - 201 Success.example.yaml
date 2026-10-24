@@ -1,0 +1,56 @@
+$kind: http-example
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+request:
+  url: "{{baseUrl}}/api/jobs"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "title": "Node.js Backend Developer",
+        "description": "Build REST APIs with Express and MongoDB.",
+        "location": "Pune",
+        "type": "full-time",
+        "salary": 45000,
+        "skills": [
+          "node",
+          "express",
+          "mongodb"
+        ]
+      }
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "title": "Node.js Backend Developer",
+          "description": "Build REST APIs with Express and MongoDB.",
+          "companyName": "Acme Tech",
+          "location": "Pune",
+          "type": "full-time",
+          "salary": 45000,
+          "skills": [
+            "node",
+            "express",
+            "mongodb"
+          ],
+          "status": "open",
+          "postedBy": "6adc629bc3f8de3310fda061",
+          "_id": "6adc629cc3f8de3310fda065",
+          "createdAt": "2026-10-24T07:47:40.312Z",
+          "updatedAt": "2026-10-24T07:47:40.312Z",
+          "__v": 0
+        }
+      }
+order: 1000

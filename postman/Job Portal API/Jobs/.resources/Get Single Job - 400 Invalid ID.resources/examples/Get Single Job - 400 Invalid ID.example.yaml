@@ -1,0 +1,19 @@
+$kind: http-example
+auth:
+  type: noauth
+request:
+  url: "{{baseUrl}}/api/jobs/123"
+  method: GET
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "Invalid ID format"
+      }
+order: 1000

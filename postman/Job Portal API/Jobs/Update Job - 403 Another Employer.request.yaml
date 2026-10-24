@@ -1,0 +1,24 @@
+$kind: http-request
+description: Another employer cannot update this job.
+url: "{{baseUrl}}/api/jobs/{{jobId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "salary": 1
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{employer2Token}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 403', function () { pm.response.to.have.status(403); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(false); });
+    language: text/javascript
+examples: ./.resources/Update Job - 403 Another Employer.resources/examples
+order: 15000

@@ -1,0 +1,48 @@
+$kind: http-example
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+request:
+  url: "{{baseUrl}}/api/jobs/{{jobId}}"
+  method: PUT
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "salary": 50000,
+        "description": "Build and scale REST APIs."
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "_id": "6adc629cc3f8de3310fda065",
+          "title": "Node.js Backend Developer",
+          "description": "Build and scale REST APIs.",
+          "companyName": "Acme Tech",
+          "location": "Pune",
+          "type": "full-time",
+          "salary": 50000,
+          "skills": [
+            "node",
+            "express",
+            "mongodb"
+          ],
+          "status": "open",
+          "postedBy": "6adc629bc3f8de3310fda061",
+          "createdAt": "2026-10-24T07:47:40.312Z",
+          "updatedAt": "2026-10-24T07:47:40.387Z",
+          "__v": 0
+        }
+      }
+order: 1000

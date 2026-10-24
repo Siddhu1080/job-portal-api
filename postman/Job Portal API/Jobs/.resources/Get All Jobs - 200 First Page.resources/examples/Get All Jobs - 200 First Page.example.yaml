@@ -1,0 +1,92 @@
+$kind: http-example
+auth:
+  type: noauth
+request:
+  url: "{{baseUrl}}/api/jobs?page=1&limit=10"
+  method: GET
+  queryParams:
+    page: "1"
+    limit: "10"
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "total": 3,
+        "page": 1,
+        "pages": 1,
+        "count": 3,
+        "data": [
+          {
+            "_id": "6adc629cc3f8de3310fda067",
+            "title": "QA Engineer",
+            "description": "Test APIs using Postman.",
+            "companyName": "Acme Tech",
+            "location": "Pune",
+            "type": "part-time",
+            "salary": 30000,
+            "skills": [
+              "postman"
+            ],
+            "status": "open",
+            "postedBy": {
+              "_id": "6adc629bc3f8de3310fda061",
+              "name": "Employer One",
+              "companyName": "Acme Tech"
+            },
+            "createdAt": "2026-10-24T07:47:40.336Z",
+            "updatedAt": "2026-10-24T07:47:40.336Z",
+            "__v": 0
+          },
+          {
+            "_id": "6adc629cc3f8de3310fda066",
+            "title": "Frontend Intern",
+            "description": "Help build React interfaces.",
+            "companyName": "Acme Tech",
+            "location": "Mumbai",
+            "type": "internship",
+            "salary": 15000,
+            "skills": [
+              "react"
+            ],
+            "status": "open",
+            "postedBy": {
+              "_id": "6adc629bc3f8de3310fda061",
+              "name": "Employer One",
+              "companyName": "Acme Tech"
+            },
+            "createdAt": "2026-10-24T07:47:40.329Z",
+            "updatedAt": "2026-10-24T07:47:40.329Z",
+            "__v": 0
+          },
+          {
+            "_id": "6adc629cc3f8de3310fda065",
+            "title": "Node.js Backend Developer",
+            "description": "Build REST APIs with Express and MongoDB.",
+            "companyName": "Acme Tech",
+            "location": "Pune",
+            "type": "full-time",
+            "salary": 45000,
+            "skills": [
+              "node",
+              "express",
+              "mongodb"
+            ],
+            "status": "open",
+            "postedBy": {
+              "_id": "6adc629bc3f8de3310fda061",
+              "name": "Employer One",
+              "companyName": "Acme Tech"
+            },
+            "createdAt": "2026-10-24T07:47:40.312Z",
+            "updatedAt": "2026-10-24T07:47:40.312Z",
+            "__v": 0
+          }
+        ]
+      }
+order: 1000

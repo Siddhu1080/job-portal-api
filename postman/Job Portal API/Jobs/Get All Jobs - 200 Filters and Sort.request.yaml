@@ -1,0 +1,23 @@
+$kind: http-request
+description: |-
+  Public. Search, type, skill and minimum salary filters with ascending salary sort.
+
+  Access: public / no token.
+url: "{{baseUrl}}/api/jobs?search=node&type=full-time&skill=express&minSalary=20000&sort=salary"
+method: GET
+queryParams:
+  search: node
+  type: full-time
+  skill: express
+  minSalary: "20000"
+  sort: salary
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () { pm.response.to.have.status(200); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(true); });
+    language: text/javascript
+examples: ./.resources/Get All Jobs - 200 Filters and Sort.resources/examples
+order: 8000

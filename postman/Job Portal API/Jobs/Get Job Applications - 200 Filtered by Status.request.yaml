@@ -1,0 +1,18 @@
+$kind: http-request
+description: Job owner only. Filter by status.
+url: "{{baseUrl}}/api/jobs/{{jobId}}/applications?status=applied"
+method: GET
+queryParams:
+  status: applied
+auth:
+  type: bearer
+  credentials:
+    token: "{{employerToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () { pm.response.to.have.status(200); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(true); });
+    language: text/javascript
+examples: ./.resources/Get Job Applications - 200 Filtered by Status.resources/examples
+order: 26000

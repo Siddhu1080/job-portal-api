@@ -1,0 +1,28 @@
+$kind: http-request
+description: |-
+  Public. Registers a user. Body: name, email, password (min 6), role (candidate|employer), companyName (required for employers). If this user already exists from a previous run, delete the user from the database or use another email (see "Register - 409 Duplicate Email").
+
+  Access: public / no token.
+url: "{{baseUrl}}/api/auth/register"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "name": "Candidate Two",
+      "email": "candidate2@example.com",
+      "password": "secret123",
+      "role": "candidate"
+    }
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201', function () { pm.response.to.have.status(201); });
+      pm.test('Success flag matches', function () { var j = pm.response.json(); pm.expect(j.success).to.eql(true); });
+    language: text/javascript
+examples: ./.resources/Register Candidate 2 - 201 Success.resources/examples
+order: 4000

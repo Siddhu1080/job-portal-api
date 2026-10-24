@@ -1,0 +1,36 @@
+$kind: http-example
+auth:
+  type: noauth
+request:
+  url: "{{baseUrl}}/api/auth/login"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "email": "candidate2@example.com",
+        "password": "secret123"
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZGM2MjliYzNmOGRlMzMxMGZkYTA2NCIsImlhdCI6MTc5MjgyODA2MCwiZXhwIjoxNzkyOTE0NDYwfQ.i0s80xoFiqylAMhBO8_kR5-HeQsWsVavX_Wrx417Yco",
+        "data": {
+          "_id": "6adc629bc3f8de3310fda064",
+          "name": "Candidate Two",
+          "email": "candidate2@example.com",
+          "role": "candidate",
+          "createdAt": "2026-10-24T07:47:39.711Z",
+          "updatedAt": "2026-10-24T07:47:39.711Z"
+        }
+      }
+order: 1000

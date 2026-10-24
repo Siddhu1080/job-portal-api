@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{baseUrl}}/api/jobs/{{jobId}}/close"
+method: PATCH
+order: 5000

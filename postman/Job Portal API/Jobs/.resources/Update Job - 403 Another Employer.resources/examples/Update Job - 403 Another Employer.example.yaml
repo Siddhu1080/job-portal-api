@@ -1,0 +1,29 @@
+$kind: http-example
+auth:
+  type: bearer
+  credentials:
+    token: "{{employer2Token}}"
+request:
+  url: "{{baseUrl}}/api/jobs/{{jobId}}"
+  method: PUT
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "salary": 1
+      }
+response:
+  statusCode: 403
+  statusText: Forbidden
+  headers:
+    Content-Type: application/json; charset=utf-8
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "You can only update your own jobs"
+      }
+order: 1000
