@@ -162,6 +162,48 @@ shortlisted -> rejected
 ```
 `hired` and `rejected` are final. Anything else returns 400 (for example "An application cannot move from hired to rejected"). Withdrawal is allowed only while status is `applied`.
 
+
+
+## API Response Examples
+
+### Successful response
+
+A successful request returns a JSON response with a `success` field and the relevant data.
+
+```json
+{
+  "success": true,
+  "data": []
+}
+```
+
+### Error response
+
+Errors return a JSON response containing a message describing the problem.
+
+```json
+{
+  "success": false,
+  "message": "Route not found"
+}
+```
+
+### Common HTTP status codes
+
+| Status | Meaning |
+|---|---|
+| 200 | Request succeeded |
+| 201 | Resource created |
+| 400 | Invalid input or request |
+| 401 | Authentication required or invalid |
+| 403 | Insufficient permission |
+| 404 | Resource or route not found |
+| 409 | Conflict, such as a duplicate application |
+| 500 | Unexpected server error |
+
+The exact response body depends on the endpoint and error condition.
+
+
 ## Postman
 Files in `postman/`: `Job-Portal-API.postman_collection.json` and `Job-Portal-API.postman_environment.json` (variables `baseUrl`, `employerToken`, `candidateToken`, `jobId`, `applicationId`, plus helpers for the second employer/candidate and extra jobs).
 
