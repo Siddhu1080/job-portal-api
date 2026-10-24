@@ -295,3 +295,16 @@ The jobs list may initially be empty if no jobs have been created.
 - Never include real passwords, JWT tokens, or database credentials in screenshots or published examples.
 
 
+
+## Submission Checklist
+
+- [ ] Install dependencies with `npm install`.
+- [ ] Configure environment variables using `.env.example`.
+- [ ] Start the API and verify database connectivity.
+- [ ] Test authentication and role-based access.
+- [ ] Test job creation, listing, filtering, and management.
+- [ ] Test application submission, status updates, and withdrawal.
+- [ ] Verify validation, error responses, and ownership checks.
+- [ ] Review the Postman collection and environment files.
+- [ ] Confirm `.env` and other secrets are excluded from Git.
+- [ ] Review the Git history and repository contents before submission.
