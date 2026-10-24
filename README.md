@@ -246,6 +246,19 @@ The environment uses `baseUrl` to target the local server at `http://localhost:3
 Import the JSON files using a Postman version or workspace that supports collection and environment JSON imports. If using Postman's Local Mode, the existing workspace request files can also be used directly.
 
 
+## Deployment Notes
+
+Before deploying the API:
+
+1. Set `NODE_ENV=production` in the deployment environment if supported by the application.
+2. Configure `PORT`, `MONGODB_URI`, `JWT_SECRET`, and `JWT_EXPIRES_IN` securely.
+3. Use a MongoDB Atlas database user with only the required permissions.
+4. Restrict database network access to trusted sources.
+5. Keep `.env` and all credentials out of Git.
+6. Verify the deployed API using an HTTP client and review server logs for errors.
+
+Never commit production credentials, JWT secrets, or real user tokens. Use HTTPS when exposing the API publicly.
+
 
 ## Git commits (at least 10)
 ```powershell
