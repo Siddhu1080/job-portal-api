@@ -234,6 +234,19 @@ Use the Postman collection to verify these scenarios:
 Run these checks against a test database. Do not include real credentials or access tokens in published examples.
 
 
+## Postman Collection Files
+
+The `postman/` directory contains the API collection and local environment JSON files, along with saved Postman workspace request files.
+
+- `Job-Portal-API.postman_collection.json`: collection of representative API requests.
+- `Job-Portal-API.postman_environment.json`: local environment configuration.
+
+The environment uses `baseUrl` to target the local server at `http://localhost:3000`. Protected endpoints require a valid JWT for the appropriate user role.
+
+Import the JSON files using a Postman version or workspace that supports collection and environment JSON imports. If using Postman's Local Mode, the existing workspace request files can also be used directly.
+
+
+
 ## Git commits (at least 10)
 ```powershell
 git add .gitignore .env.example package.json package-lock.json; git commit -m "chore: initialize project and dependencies"
