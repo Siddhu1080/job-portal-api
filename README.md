@@ -2,6 +2,23 @@
 
 REST API for a job portal. Employers post jobs and manage applications; candidates search jobs, apply and track applications. Node.js, Express, MongoDB Atlas (Mongoose), JWT, bcrypt, express-validator. No frontend.
 
+
+## Prerequisites
+
+- Node.js and npm installed.
+- A MongoDB Atlas account and an accessible database cluster.
+- Git installed.
+- Postman (optional, for testing API requests).
+
+Verify your installation:
+
+```powershell
+node --version
+npm --version
+git --version
+```
+
+
 ## Setup
 
 ```powershell
@@ -92,4 +109,23 @@ git add controllers/applicationController.js routes/applicationRoutes.js; git co
 git add postman;                               git commit -m "docs: add Postman collection and environment"
 git add README.md;                             git commit -m "docs: add README"
 ```
-Run these after your first `git init` and before `git add .`, then push to GitHub.
+
+## Verify the API
+
+1. Install dependencies using `npm install`.
+2. Configure `.env` using `.env.example`.
+3. Start the development server using `npm run dev`.
+4. Open `http://localhost:3000/api/jobs` in a browser or API client.
+5. Confirm the API returns a JSON response.
+
+The jobs list may initially be empty if no jobs have been created.
+
+## Security notes
+
+- Keep `.env` out of version control.
+- Use a strong, unique `JWT_SECRET`.
+- Give the MongoDB application user only the database permissions it needs.
+- Restrict MongoDB Atlas network access to trusted IP addresses.
+- Never include real passwords, JWT tokens, or database credentials in screenshots or published examples.
+
+
