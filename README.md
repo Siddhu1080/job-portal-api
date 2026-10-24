@@ -100,6 +100,33 @@ List response: `{ "success": true, "total": 42, "page": 1, "pages": 5, "count": 
 Error response: `{ "success": false, "message": "..." }`
 Status codes: 201 created, 200 OK, 400 validation/invalid ID/invalid transition/invalid query, 401 auth, 403 role or ownership, 404 not found, 409 duplicate or closed job, 500 unexpected.
 
+
+## Job Search and Management
+
+Users can browse jobs without logging in. Employers must authenticate to create, update, close, or delete jobs they own.
+
+The job listing endpoint supports these query parameters:
+
+| Parameter | Purpose |
+|---|---|
+| `search` | Search job listings |
+| `location` | Filter by location |
+| `type` | Filter by employment type |
+| `skill` | Filter by skill |
+| `minSalary` | Filter by minimum salary |
+| `sort` | Control result ordering |
+| `page` | Select the results page |
+| `limit` | Set the number of results per page |
+
+Example request:
+
+```http
+GET /api/jobs?location=Pune&type=full-time&page=1&limit=5
+```
+
+Job owners can retrieve a job's application statistics and close a job to prevent further applications. Deleting a job also deletes its associated applications.
+
+
 ## Collections and relationships
 - **User**: name, unique lowercase email, bcrypt password (never returned), role (`candidate`/`employer`), companyName (employers only).
 - **Job**: title, description, companyName, location, type, salary (per month), skills, status (`open`/`closed`), `postedBy` -> User.
