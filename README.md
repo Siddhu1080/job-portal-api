@@ -214,6 +214,26 @@ Files in `postman/`: `Job-Portal-API.postman_collection.json` and `Job-Portal-AP
 5. To re-export: collection `...` > Export > Collection v2.1, save into `postman/`.
 6. A 500 example: while the server runs, break the DB connection (for example disconnect the network), then call any DB endpoint and save the response.
 
+
+
+## Testing Checklist
+
+Use the Postman collection to verify these scenarios:
+
+- [ ] Register an employer and a candidate.
+- [ ] Log in and obtain JWT tokens for both roles.
+- [ ] Create a job as an employer.
+- [ ] Confirm that public job listing and filtering work.
+- [ ] Apply to an open job as a candidate.
+- [ ] Confirm that a duplicate application is rejected.
+- [ ] Confirm that applying to a closed job is rejected.
+- [ ] Confirm that an employer can manage applications for their own jobs.
+- [ ] Confirm that users cannot manage resources they do not own.
+- [ ] Confirm that invalid input and missing authentication return appropriate errors.
+
+Run these checks against a test database. Do not include real credentials or access tokens in published examples.
+
+
 ## Git commits (at least 10)
 ```powershell
 git add .gitignore .env.example package.json package-lock.json; git commit -m "chore: initialize project and dependencies"
